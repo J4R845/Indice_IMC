@@ -12,6 +12,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,10 +26,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Pegar a data do sistema Android formatada
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String date =sdf.format(new Date());
+                // A varaaiavel date contem a data
+
+                Toast.makeText(getApplicationContext(),date,Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(MainActivity.this, DadosImc.class);
 
