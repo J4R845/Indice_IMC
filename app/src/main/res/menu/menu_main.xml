@@ -2,9 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.delarue.indiceimc.MainActivity">
+
     <item
         android:id="@+id/action_settings"
+        android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/action_calcular"
+        android:visible="true"
+        app:showAsAction="never|ifRoom" />
 </menu>

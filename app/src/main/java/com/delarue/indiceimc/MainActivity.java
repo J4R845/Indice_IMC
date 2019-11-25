@@ -1,5 +1,6 @@
 package com.delarue.indiceimc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,8 +26,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Deseja Arquivar Estes Dados?", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent i = new Intent(MainActivity.this, DadosImc.class);
+
+                startActivity(i);
+
+               // Snackbar.make(view, "Deseja Arquivar Estes Dados?", Snackbar.LENGTH_LONG)
+                       // .setAction("Action", null).show();
             }
         });
     }

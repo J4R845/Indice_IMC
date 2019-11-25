@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".DadosImc">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -28,8 +28,8 @@
         android:layout_margin="@dimen/fab_margin"
         android:tint="@color/colorWhite"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_dados_imc" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
