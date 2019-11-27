@@ -3,7 +3,7 @@ package com.delarue.indiceimc.model;
 public class Imc {
 
     private int id;
-    private String data;
+    private String datareg;
     private String peso;
     private String altura;
     private String resultado;
@@ -21,12 +21,12 @@ public class Imc {
         this.id = id;
     }
 
-    public String getData() {
-        return data;
+    public String getDatareg() {
+        return datareg;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDatareg(String datareg) {
+        this.datareg = datareg;
     }
 
     public String getPeso() {
@@ -65,7 +65,7 @@ public class Imc {
     public String toString() {
         return "Imc{" +
                 "id=" + id +
-                ", data='" + data + '\'' +
+                ", datareg='" + datareg + '\'' +
                 ", peso='" + peso + '\'' +
                 ", altura='" + altura + '\'' +
                 ", resultado='" + resultado + '\'' +

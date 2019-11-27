@@ -32,7 +32,7 @@
             android:text="Peso" />
 
         <EditText
-            android:id="@+id/editText12"
+            android:id="@+id/editPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -83,7 +83,7 @@
             android:textColor="@color/colorWhite" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -134,7 +134,7 @@
             android:textColor="@color/colorWhite" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtResultado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -168,7 +168,7 @@
             android:textColor="@color/colorWhite" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/txtDiagnostico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
