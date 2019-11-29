@@ -3,6 +3,8 @@ package com.delarue.indiceimc;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.delarue.indiceimc.dao.ImcDao;
+import com.delarue.indiceimc.model.Imc;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -13,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,13 +30,19 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewHolder mViewHolder = new ViewHolder();
 
-    float imc;
+    float imcr;
     String mensagem = "";
     boolean dadosValidados;
+    boolean validadosCampos;
 
     float kilos;
     float tamanho;
 
+    Imc imc, altImc;
+    ImcDao imcDao;
+    long retornoDB;
+
+    // Button btnVariavel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,30 +51,135 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent i = getIntent();
+        altImc = (Imc) i.getSerializableExtra("imc-enviado");
+        imc = new Imc();
+        imcDao = new ImcDao(MainActivity.this);
+
+
         this.mViewHolder.editPeso = findViewById(R.id.editPeso);
         this.mViewHolder.editAltura = findViewById(R.id.editAltura);
         this.mViewHolder.txtResultado = findViewById(R.id.txtResultado);
         this.mViewHolder.txtDiagnostico = findViewById(R.id.txtDiagnostico);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        this.mViewHolder.fab = findViewById(R.id.fab);
+        this.mViewHolder.btnVariavel = findViewById(R.id.btnVariavel);
+
+
+        // Pegar a data do sistema Android formatada
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        // "date", varaaiavel date contem a data
+        final String date = sdf.format(new Date());
+
+
+        if (altImc != null) {
+
+            this.mViewHolder.btnVariavel.setText("Alterar");
+
+            this.mViewHolder.editPeso.setText(altImc.getPeso());
+            this.mViewHolder.editAltura.setText(altImc.getAltura());
+            this.mViewHolder.txtResultado.setText(altImc.getResultado());
+            this.mViewHolder.txtDiagnostico.setText(altImc.getDiagnostico());
+
+
+            imc.setId(altImc.getId());
+
+
+        } else {
+
+            this.mViewHolder.btnVariavel.setText("Salvar");
+
+        }
+
+        this.mViewHolder.btnVariavel.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
-                // Pegar a data do sistema Android formatada
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                String date =sdf.format(new Date());
-                // A varaaiavel date contem a data
 
-                Toast.makeText(getApplicationContext(),date,Toast.LENGTH_LONG).show();
+                try {
+
+                    imc.setDatareg(date);
+                    imc.setPeso(mViewHolder.editPeso.getText().toString());
+                    imc.setAltura(mViewHolder.editAltura.getText().toString());
+                    imc.setResultado(mViewHolder.txtResultado.getText().toString());
+                    imc.setDiagnostico(mViewHolder.txtDiagnostico.getText().toString());
+
+
+                    validadosCampos = validacaoCampos();
+
+                    if (validadosCampos) {
+
+                        // Log.i("CrudSQLite", "Testando App");
+
+
+                        if (mViewHolder.btnVariavel.getText().toString().equals("Salvar")) {
+
+                            retornoDB = imcDao.salvarImc(imc);
+                            imcDao.close();
+
+                            if (retornoDB == -1) {
+
+                                alert("Erro Ao Cadastrar");
+                            } else {
+
+                                alert("Cadastro Realizado!");
+                            }
+
+                        } else {
+
+                            retornoDB = imcDao.alterarImc(imc);
+                            imcDao.close();
+
+                            if (retornoDB == -1) {
+                                alert("Erro Ao Atualizar Os Dados");
+
+                            } else {
+
+                                alert("Os Dados Foram Atualizados");
+                            }
+
+                        }
+
+                        finish();
+
+                    }
+
+
+                } catch (Exception e) {
+
+
+                }
+
+            }
+
+            private void alert(String s) {
+
+
+                Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+        this.mViewHolder.fab.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View view){
+
+
+               //  Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
+
 
                 Intent i = new Intent(MainActivity.this, DadosImc.class);
 
                 startActivity(i);
 
-               // Snackbar.make(view, "Deseja Arquivar Estes Dados?", Snackbar.LENGTH_LONG)
-                       // .setAction("Action", null).show();
+                //Snackbar.make(view, "Os Dados Foram Salvos", Snackbar.LENGTH_LONG)
+                // .setAction("Action", null).show();
             }
+
         });
     }
 
@@ -78,9 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_calcular) {
@@ -90,16 +202,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private static  class ViewHolder{
+    // Classe ViewHolder
+
+    private static class ViewHolder{
+
+        // Classe ViewHolder
 
         EditText editPeso;
         EditText editAltura;
         TextView txtResultado;
         TextView txtDiagnostico;
-
+        Button btnVariavel;
+        FloatingActionButton fab;
     }
 
-    public void salvarImc(MenuItem item) {
+    public void calcularImcs(MenuItem item) {
 
         try {
 
@@ -118,30 +235,30 @@ public class MainActivity extends AppCompatActivity {
                 tamanho = Float.parseFloat(this.mViewHolder.editAltura.getText().toString());
 
 
-                imc = kilos / (tamanho * tamanho);
+                imcr = kilos / (tamanho * tamanho);
 
                 // Validação da IMC
 
-                if (imc < 17) {
+                if (imcr < 17) {
                     mensagem = "Muito Abaixo Do Peso";
 
-                } else if ((imc >= 17) && (imc < 18.5)) {
+                } else if ((imcr >= 17) && (imcr < 18.5)) {
 
                     mensagem = "Abaixo Do Peso";
 
-                } else if ((imc >= 18.5) && (imc < 25)) {
+                } else if ((imcr >= 18.5) && (imcr < 25)) {
 
                     mensagem = "Peso Ideal";
 
-                } else if ((imc >= 25) && (imc < 30)) {
+                } else if ((imcr >= 25) && (imcr < 30)) {
 
                     mensagem = "Acima Do Peso";
 
-                } else if ((imc >= 30) && (imc < 35)) {
+                } else if ((imcr >= 30) && (imcr < 35)) {
 
                     mensagem = "Obesidade Grau I";
 
-                } else if ((imc >= 35) && (imc < 40)) {
+                } else if ((imcr >= 35) && (imcr < 40)) {
 
                     mensagem = "Obesidade Grau II";
 
@@ -153,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Mostrar o resultado
 
-                this.mViewHolder.txtResultado.setText(format("%.2f", imc));
+                this.mViewHolder.txtResultado.setText(format("%.2f", imcr));
                 this.mViewHolder.txtDiagnostico.setText(mensagem);
 
 
@@ -165,30 +282,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-        private boolean validarCampos(){
+    private boolean validarCampos(){
 
+        boolean retorno = false;
 
-            boolean retorno = false;
-
-            if(!TextUtils.isEmpty(this.mViewHolder.editPeso.getText().toString())) {
-                retorno = true;
-            }else{
-                this.mViewHolder.editPeso.setError("Digite O Peso!");
-                this.mViewHolder.editPeso.requestFocus();
-            }
-
-            if (!TextUtils.isEmpty(this.mViewHolder.editAltura.getText().toString())) {
-                retorno = true;
-            } else {
-                this.mViewHolder.editAltura.setError("Digite A Altura!");
-                this.mViewHolder.editAltura.requestFocus();
-            }
-
-
-            return retorno;
+        if(!TextUtils.isEmpty(this.mViewHolder.editPeso.getText().toString())) {
+            retorno = true;
+        }else{
+            this.mViewHolder.editPeso.setError("Digite O Peso!");
+            this.mViewHolder.editPeso.requestFocus();
         }
 
+        if (!TextUtils.isEmpty(this.mViewHolder.editAltura.getText().toString())) {
+            retorno = true;
+        } else {
+            this.mViewHolder.editAltura.setError("Digite A Altura!");
+            this.mViewHolder.editAltura.requestFocus();
+        }
+
+        return retorno;
     }
+
+    //Inicio Validação de Campos
+
+    private boolean validacaoCampos() {
+
+        boolean retorno = true;
+
+        if (TextUtils.isEmpty(this.mViewHolder.editPeso.getText().toString())
+                || this.mViewHolder.editPeso.getText().toString().trim().isEmpty()) {
+            retorno = false;
+            this.mViewHolder.editPeso.setError("Digite O Peso!");
+            this.mViewHolder.editPeso.requestFocus();
+        } else if (TextUtils.isEmpty(this.mViewHolder.editAltura.getText().toString())
+                || this.mViewHolder.editAltura.getText().toString().trim().isEmpty()) {
+            retorno = false;
+            this.mViewHolder.editAltura.setError("Digite A Altura!");
+            this.mViewHolder.editAltura.requestFocus();
+        } else if (TextUtils.isEmpty(this.mViewHolder.txtResultado.getText().toString())
+                || this.mViewHolder.txtResultado.getText().toString().trim().isEmpty()) {
+            retorno = false;
+            this.mViewHolder.txtResultado.setError("Calcule O Indice IMC!");
+            //this.mViewHolder.txtResultado.requestFocus();
+
+        } else if (TextUtils.isEmpty(this.mViewHolder.txtDiagnostico.getText().toString())
+                || this.mViewHolder.txtDiagnostico.getText().toString().trim().isEmpty()) {
+            retorno = false;
+            this.mViewHolder.txtDiagnostico.setError("Calcule O Indice IMC!");
+            //this.mViewHolder.txtDiagnostico.requestFocus();
+        }
+
+        return retorno;
+    }
+
+    //Fim Validação de Campos
+
+}
 
 
 

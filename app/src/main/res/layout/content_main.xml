@@ -139,7 +139,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="5dp"
-            android:text="24.65"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>
@@ -172,21 +171,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Resultado Diagnostico"
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>
     <!-- Fim do Layout do resultado do Diagnostico -->
 
-    <!-- Inicio do Layout dos Botões -->
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="95dp"
         android:autoSizeTextType="uniform"
         android:text=" Abaixo de        17,00  > Muito Abaixo do Peso \n
 Entre 17,00  e  18,49 > Abaixo do Peso \n
@@ -199,6 +197,29 @@ Acima de          40,00 > Obesidade Grave (Grau III)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Inicio do Layout dos Botões -->
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnVariavel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Button"
+            android:textAllCaps="false" />
+    </LinearLayout>
     <!-- Fim do Layout dos Botões -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

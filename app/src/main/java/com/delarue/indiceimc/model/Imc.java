@@ -1,6 +1,8 @@
 package com.delarue.indiceimc.model;
 
-public class Imc {
+import java.io.Serializable;
+
+public class Imc implements Serializable {
 
     private int id;
     private String datareg;
@@ -63,13 +65,11 @@ public class Imc {
 
     @Override
     public String toString() {
-        return "Imc{" +
-                "id=" + id +
-                ", datareg='" + datareg + '\'' +
-                ", peso='" + peso + '\'' +
-                ", altura='" + altura + '\'' +
-                ", resultado='" + resultado + '\'' +
-                ", diagnostico='" + diagnostico + '\'' +
-                '}';
+        return   //id + "\n" +
+                "Data: " + datareg  +"\n" +
+                        "Peso: " + peso + " Anos"+"\n" +
+                        "Alturar: " + altura +"\n" +
+                        "Índice IMC: " + resultado +"\n" +
+                        "Diginostico: " + diagnostico;
     }
 }
