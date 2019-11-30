@@ -2,4 +2,8 @@
     <string name="app_name">Ìndice de Massa Corporal</string>
     <string name="action_calcular">Calcular</string>
     <string name="title_activity_dados_imc">Banco de Dados IMC</string>
+    <string name="btn_calcular">Calcular</string>
+    <string name="btn_variante">Button</string>
+    <string name="texto_alterar">Alterar</string>
+    <string name="texto_salvar">Salvar</string>
 </resources>

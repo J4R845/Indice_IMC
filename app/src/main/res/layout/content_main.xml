@@ -11,8 +11,9 @@
 
     <!-- Layout para adicionar os dados de culcular o IMC -->
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="64dp"
@@ -25,34 +26,34 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="5dp"
             android:layout_weight="1"
-            android:textColor="@color/colorWhite"
+            android:paddingRight="5dp"
+            android:text="Peso"
             android:textAlignment="textEnd"
-            android:text="Peso" />
+            android:textColor="@color/colorWhite" />
 
         <EditText
             android:id="@+id/editPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:paddingLeft="2dp"
             android:layout_weight="0"
-            android:textSize="14dp"
-            android:textColor="@color/colorWhite"
-            android:textAlignment="center"
             android:background="@color/colorPrimaryEditText"
-            android:inputType="numberDecimal" />
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:paddingLeft="2dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:textColor="@color/colorWhite"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Kg"
             android:textAlignment="textStart"
-            android:text="Kg" />
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
     <!-- Layout para adicionar os dados de culcular o IMC -->
@@ -61,7 +62,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="64dp"
@@ -89,11 +90,10 @@
             android:background="@color/colorPrimaryEditText"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorWhite"
             android:paddingLeft="2dp"
             android:textAlignment="center"
+            android:textColor="@color/colorWhite"
             android:textSize="14dp" />
-
 
         <TextView
             android:id="@+id/textView15"
@@ -108,13 +108,53 @@
     </LinearLayout>
     <!-- Fim do Layout Adicionar dados  -->
 
+    <!-- Inicio do Layout dos Botões -->
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="90dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/btnCalcular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/btn_calcular"
+            android:onClick="calculoImc"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btnVariavel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/btn_variante"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+
+    <!-- Fim do Layout dos Botões -->
+
     <!-- Inicio do Layout do resultado do Índice IMC -->
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="220dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,9 +186,9 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,15 +215,13 @@
     </LinearLayout>
     <!-- Fim do Layout do resultado do Diagnostico -->
 
-
     <TextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="95dp"
-        android:autoSizeTextType="uniform"
+        android:layout_marginBottom="85dp"
         android:text=" Abaixo de        17,00  > Muito Abaixo do Peso \n
 Entre 17,00  e  18,49 > Abaixo do Peso \n
 Entre 18,50  e  24,99 > Peso Ideal \n
@@ -196,30 +234,5 @@ Acima de          40,00 > Obesidade Grave (Grau III)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Inicio do Layout dos Botões -->
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/btnVariavel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Button"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorWhite"
-            android:textAllCaps="false" />
-    </LinearLayout>
-    <!-- Fim do Layout dos Botões -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

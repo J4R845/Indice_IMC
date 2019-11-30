@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     ImcDao imcDao;
     long retornoDB;
 
-    // Button btnVariavel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.mViewHolder.fab = findViewById(R.id.fab);
         this.mViewHolder.btnVariavel = findViewById(R.id.btnVariavel);
+        this.mViewHolder.btnCalcular = findViewById(R.id.btnCalcular);
 
+        this.mViewHolder.editPeso.requestFocus();
 
         // Pegar a data do sistema Android formatada
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -74,20 +75,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (altImc != null) {
 
-            this.mViewHolder.btnVariavel.setText("Alterar");
+            this.mViewHolder.btnVariavel.setText(this.getString(R.string.texto_alterar));
 
             this.mViewHolder.editPeso.setText(altImc.getPeso());
             this.mViewHolder.editAltura.setText(altImc.getAltura());
             this.mViewHolder.txtResultado.setText(altImc.getResultado());
             this.mViewHolder.txtDiagnostico.setText(altImc.getDiagnostico());
 
-
             imc.setId(altImc.getId());
-
 
         } else {
 
-            this.mViewHolder.btnVariavel.setText("Salvar");
+            this.mViewHolder.btnVariavel.setText(this.getString(R.string.texto_salvar));
 
         }
 
@@ -162,14 +161,13 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        this.mViewHolder.fab.setOnClickListener(new View.OnClickListener()
 
-        {
+        this.mViewHolder.fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
+            public void onClick(View view) {
 
 
-               //  Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
+                //  Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
 
 
                 Intent i = new Intent(MainActivity.this, DadosImc.class);
@@ -181,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     @Override
@@ -202,9 +201,75 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void calculoImc(View view) {
+
+        try {
+
+            this.mViewHolder.txtResultado.setText("");
+            this.mViewHolder.txtDiagnostico.setText("");
+
+            dadosValidados = validarCampos();
+
+            // Recuperar os valores digitados
+
+
+            if (dadosValidados) {
+
+
+                kilos = Float.parseFloat(this.mViewHolder.editPeso.getText().toString());
+                tamanho = Float.parseFloat(this.mViewHolder.editAltura.getText().toString());
+
+
+                imcr = kilos / (tamanho * tamanho);
+
+                // Validação da IMC
+
+                if (imcr < 17) {
+                    mensagem = "Muito Abaixo Do Peso";
+
+                } else if ((imcr >= 17) && (imcr < 18.5)) {
+
+                    mensagem = "Abaixo Do Peso";
+
+                } else if ((imcr >= 18.5) && (imcr < 25)) {
+
+                    mensagem = "Peso Ideal";
+
+                } else if ((imcr >= 25) && (imcr < 30)) {
+
+                    mensagem = "Acima Do Peso";
+
+                } else if ((imcr >= 30) && (imcr < 35)) {
+
+                    mensagem = "Obesidade Grau I";
+
+                } else if ((imcr >= 35) && (imcr < 40)) {
+
+                    mensagem = "Obesidade Grau II";
+
+                } else {
+
+                    mensagem = "Obesidade Mórbida";
+
+                }
+
+                // Mostrar o resultado
+
+                this.mViewHolder.txtResultado.setText(format("%.2f", imcr));
+                this.mViewHolder.txtDiagnostico.setText(mensagem);
+
+
+            }
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
     // Classe ViewHolder
 
-    private static class ViewHolder{
+    private static class ViewHolder {
 
         // Classe ViewHolder
 
@@ -213,8 +278,10 @@ public class MainActivity extends AppCompatActivity {
         TextView txtResultado;
         TextView txtDiagnostico;
         Button btnVariavel;
+        Button btnCalcular;
         FloatingActionButton fab;
     }
+
 
     public void calcularImcs(MenuItem item) {
 
@@ -282,13 +349,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean validarCampos(){
+    private boolean validarCampos() {
 
         boolean retorno = false;
 
-        if(!TextUtils.isEmpty(this.mViewHolder.editPeso.getText().toString())) {
+        if (!TextUtils.isEmpty(this.mViewHolder.editPeso.getText().toString())) {
             retorno = true;
-        }else{
+        } else {
             this.mViewHolder.editPeso.setError("Digite O Peso!");
             this.mViewHolder.editPeso.requestFocus();
         }
@@ -323,13 +390,11 @@ public class MainActivity extends AppCompatActivity {
                 || this.mViewHolder.txtResultado.getText().toString().trim().isEmpty()) {
             retorno = false;
             this.mViewHolder.txtResultado.setError("Calcule O Indice IMC!");
-            //this.mViewHolder.txtResultado.requestFocus();
 
         } else if (TextUtils.isEmpty(this.mViewHolder.txtDiagnostico.getText().toString())
                 || this.mViewHolder.txtDiagnostico.getText().toString().trim().isEmpty()) {
             retorno = false;
             this.mViewHolder.txtDiagnostico.setError("Calcule O Indice IMC!");
-            //this.mViewHolder.txtDiagnostico.requestFocus();
         }
 
         return retorno;
