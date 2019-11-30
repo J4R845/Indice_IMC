@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Ìndice de Massa Corporal</string>
     <string name="action_calcular">Calcular</string>
-    <string name="title_activity_dados_imc">DadosImc</string>
+    <string name="title_activity_dados_imc">Banco de Dados IMC</string>
 </resources>

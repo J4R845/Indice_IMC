@@ -29,7 +29,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:tint="@color/colorWhite"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:srcCompat="@android:drawable/ic_dialog_dialer" />
 
     <include layout="@layout/content_main" />
 

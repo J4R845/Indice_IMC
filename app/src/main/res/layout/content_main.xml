@@ -36,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Digite O Peso"
             android:paddingLeft="2dp"
             android:layout_weight="0"
             android:textSize="14dp"
@@ -89,7 +88,6 @@
             android:layout_weight="0"
             android:background="@color/colorPrimaryEditText"
             android:ems="10"
-            android:hint="Digite A Altura"
             android:inputType="numberDecimal"
             android:textColor="@color/colorWhite"
             android:paddingLeft="2dp"
@@ -218,6 +216,8 @@ Acima de          40,00 > Obesidade Grave (Grau III)"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="Button"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
             android:textAllCaps="false" />
     </LinearLayout>
     <!-- Fim do Layout dos Botões -->
