@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    android:background="@color/colorPrimary"
     tools:showIn="@layout/activity_main">
 
     <!-- Layout para adicionar os dados de culcular o IMC -->
@@ -22,16 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="5dp"
-            android:text="Peso"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorWhite" />
-
         <EditText
             android:id="@+id/editPeso"
             android:layout_width="wrap_content"
@@ -43,7 +33,17 @@
             android:paddingLeft="2dp"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:text="@string/texto_peso"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/textView10"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="5dp"
-            android:text="Kg"
+            android:text="@string/texto_kg"
             android:textAlignment="textStart"
             android:textColor="@color/colorWhite" />
 
@@ -72,16 +72,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="5dp"
-            android:text="Altura"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorWhite" />
-
         <EditText
             android:id="@+id/editAltura"
             android:layout_width="wrap_content"
@@ -93,7 +83,17 @@
             android:paddingLeft="2dp"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:text="@string/texto_altura"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/textView15"
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="5dp"
-            android:text="Mts"
+            android:text="@string/texto_metros"
             android:textAlignment="textStart"
             android:textColor="@color/colorWhite" />
 
@@ -128,8 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="@string/btn_calcular"
             android:onClick="calculoImc"
+            android:text="@string/btn_calcular"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
 
@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="5dp"
-            android:text="Índice IMC"
+            android:text="@string/texto_indice_imc"
             android:textAlignment="textEnd"
             android:textColor="@color/colorWhite" />
 
@@ -200,7 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Diagnóstico"
+            android:text="@string/texto_diagnostico"
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
 
@@ -222,12 +222,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="85dp"
-        android:text=" Abaixo de        17,00  > Muito Abaixo do Peso \n
-Entre 17,00  e  18,49 > Abaixo do Peso \n
-Entre 18,50  e  24,99 > Peso Ideal \n
-Entre 25,00  e  29,99 > Acima do Peso \n
-Entre 30,00  e  39,99 > Obesidade (Grau II) \n
-Acima de          40,00 > Obesidade Grave (Grau III)"
+        android:text="@string/texto_informativo"
         android:textAlignment="textStart"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
