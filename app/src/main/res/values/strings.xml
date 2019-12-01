@@ -12,5 +12,5 @@
     <string name="texto_metros">Mts</string>
     <string name="texto_indice_imc">Índice IMC</string>
     <string name="texto_diagnostico">Diagnóstico</string>
-    <string name="texto_informativo"><![CDATA[Abaixo de 17,00 > Muito Abaixo do Peso   Entre 17,00 e 18,49 > Abaixo do Peso   Entre 18,50 e 24,99 > Peso Ideal   Entre 25,00 e 29,99 > Acima do Peso   Entre 30,00 e 39,99 > Obesidade (Grau II)   Acima de 40,00 > Obesidade Grave (Grau III)]]></string>
+    <string name="texto_informativo">Abaixo de 17,00 > Muito Abaixo do Peso \n Entre 17,00 e 18,49 > Abaixo do Peso \n Entre 18,50 e 24,99 > Peso Ideal \n Entre 25,00 e 29,99 > Acima do Peso \n Entre 30,00 e 39,99 > Obesidade (Grau II) \n Acima de 40,00 > Obesidade Grave (Grau III)</string>
 </resources>

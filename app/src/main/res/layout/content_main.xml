@@ -22,6 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:text="@string/texto_peso"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite" />
+
         <EditText
             android:id="@+id/editPeso"
             android:layout_width="wrap_content"
@@ -34,16 +44,6 @@
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="5dp"
-            android:text="@string/texto_peso"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/textView10"
@@ -72,6 +72,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:text="@string/texto_altura"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite" />
+
         <EditText
             android:id="@+id/editAltura"
             android:layout_width="wrap_content"
@@ -84,16 +94,6 @@
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="5dp"
-            android:text="@string/texto_altura"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/textView15"
